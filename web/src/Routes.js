@@ -7,12 +7,16 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
+import SimpleLayout from './layouts/SimpleLayout/SimpleLayout'
+
 import { Router, Route } from '@redwoodjs/router'
 
 const Routes = () => {
   return (
     <Router>
-      <Route path="/" page={HomePage} name="home" prerender />
+      <Set wrap={SimpleLayout}>
+        <Route path="/" page={HomePage} name="home" prerender />
+      </Set>
       <Route notfound page={NotFoundPage} />
     </Router>
   )
