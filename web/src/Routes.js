@@ -9,7 +9,7 @@
 
 import SimpleLayout from './layouts/SimpleLayout/SimpleLayout'
 
-import { Router, Route } from '@redwoodjs/router'
+import { Set, Router, Route } from '@redwoodjs/router'
 
 const Routes = () => {
   return (
