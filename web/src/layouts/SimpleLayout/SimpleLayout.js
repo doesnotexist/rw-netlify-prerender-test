@@ -1,5 +1,12 @@
 const SimpleLayout = ({ children }) => {
-  return <div>{children}</div>
+  return (
+    <>
+      <div>
+        <button>login</button>
+      </div>
+      <div>{children}</div>
+    </>
+  )
 }
 
 export default SimpleLayout
