@@ -7,8 +7,16 @@ import { RedwoodApolloProvider } from '@redwoodjs/web/apollo'
 import FatalErrorPage from 'src/pages/FatalErrorPage'
 import Routes from 'src/Routes'
 
+import { getAuth } from '@firebase/auth'
 import { getDatabase } from '@firebase/database'
-import { FirebaseAppProvider, DatabaseProvider } from 'reactfire'
+import { getFirestore } from '@firebase/firestore'
+
+import {
+  DatabaseProvider,
+  FirebaseAppProvider,
+  AuthProvider as FirebaseAuthProvider,
+  FirestoreProvider,
+} from 'reactfire'
 
 import './index.css'
 
@@ -40,9 +48,13 @@ const App = () => (
       <AuthProvider client={firebaseClient} type="firebase">
         <RedwoodApolloProvider>
           <FirebaseAppProvider firebaseApp={firebaseApp}>
-            <DatabaseProvider sdk={getDatabase(firebaseApp)}>
-              <Routes />
-            </DatabaseProvider>
+            <FirebaseAuthProvider sdk={getAuth(firebaseApp)}>
+              <DatabaseProvider sdk={getDatabase(firebaseApp)}>
+                <FirestoreProvider sdk={getFirestore(firebaseApp)}>
+                  <Routes />
+                </FirestoreProvider>
+              </DatabaseProvider>
+            </FirebaseAuthProvider>
           </FirebaseAppProvider>
         </RedwoodApolloProvider>
       </AuthProvider>
